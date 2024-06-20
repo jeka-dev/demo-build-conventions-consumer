@@ -56,15 +56,15 @@ jeka runJar
 
 This project showcases, how we can easily re-use build definition across several projects.
 
-Here, we reuse a build definition (we call it a *template*) defined in an [external project](https://github.com/jeka-dev/demo-build-templates/blob/master/src/dev/jeka/demo/templates/SpringBootTemplateBuild.java).
+Here, we reuse a KBean which holds methods and parameters for building and delivering the project. 
+We can access to this KBean sources just by click on the class name when using IntelliJ.
 
-The template is designed to build Spring-Boot project, optionally containing a ReactJs nodejs project.
+This KBean is designed to build Spring-Boot project, optionally containing a ReactJs nodejs project.
 
 This includes tests with coverage, Sonarqube analysis, ReactJs packaging (if present) and bootable jar creation.
 
-For this, the project has to define only what is specific (application name, dependencies, Spring-Boot and Java version),
-the build template will handle all the remaining parts.
+This project needs to define only what is specific  (dependencies, and Java version),
+The `appId` and `nodeJsVersion` can be optionally overrides defaults.
 
-The whole build definition lies in [jeka.properties file](jeka.properties) 
 
 
