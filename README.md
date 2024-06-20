@@ -64,7 +64,7 @@ This KBean is designed to build Spring-Boot project, optionally containing a Rea
 This includes tests with coverage, Sonarqube analysis, ReactJs packaging (if present) and bootable jar creation.
 
 This project needs to define only what is specific  (dependencies, and Java version),
-The `appId` and `nodeJsVersion` can be optionally overrides defaults.
+The `appId` and `nodeJsVersion` can be optionally specified to overrides defaults.
 
 
 
