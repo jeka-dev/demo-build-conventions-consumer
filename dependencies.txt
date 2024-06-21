@@ -9,3 +9,4 @@ com.h2database:h2:2.1.214
 
 ==== TEST ====
 org.springframework.boot:spring-boot-starter-test
+com.codeborne:selenide:7.2.3

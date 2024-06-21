@@ -26,18 +26,16 @@ jeka.default.kbean=dev.jeka.demo.templates.SpringBootTemplateBuild
 @springBootTemplateBuild.nodeJsVersion=20.14.0
 ```
 
-
-Let's see how to use it.
+<br/><br/>
+Let's see how to use it. The exposed methods are coming from `SpringBootTemplateBuild` class.
 
 ## Setup IDE
-
+ 
 ```shell
 jeka intellij: iml
 ```
 
 ## Build
-
-This springboot project is built using [JeKa](https://jeka.dev) with this [build template](https://github.com/jeka-dev/demo-build-templates/blob/master/src/dev/jeka/demo/templates/SpringBootTemplateBuild.java)
 
 Help on template KBean :
 ```shell
@@ -59,12 +57,14 @@ To run the bootable jar built in previous step, execute :
 jeka runJar
 ```
 
+To create a Docker image
+```shell
+jeka buildImage
+```
 
+Once the image is built built, we can run end-to-end tests on the Docker image
+```shell
+jeka runE2e
+```
 
-
-
-
-
-
-
-
+For CI/CD, we can run `jeka pack buildImage runE2e` for instance.
