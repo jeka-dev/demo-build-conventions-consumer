@@ -1,4 +1,4 @@
-# Springboot-ReactJs application built using an external template
+# Springboot-ReactJs Application built using an External Template
 
 The web application manages a list of coffee shops.
 
