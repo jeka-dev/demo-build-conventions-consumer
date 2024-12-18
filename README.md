@@ -4,7 +4,7 @@ The web application manages a list of coffee shops.
 
 ![img.png](screenshot.png)
 
-It is fully built with JeKa by using an [external KBean](https://github.com/jeka-dev/demo-build-templates/blob/master/src/dev/jeka/demo/templates/SpringBootTemplateBuild.java)
+It is fully built with JeKa by using an [external KBean](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/SpringBootTemplateBuild.java)
 containing the build logic.
 This allows to describe the whole build only by specifying the following properties mentioned below.
 
