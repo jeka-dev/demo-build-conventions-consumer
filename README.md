@@ -8,7 +8,7 @@ It is fully built with JeKa by using a [template](https://github.com/jeka-dev/de
 containing the build logic.
 This allows to describe the whole build only by specifying the following properties mentioned below.
 
-This KBean is designed to build a Spring-Boot project, optionally containing a ReactJs app.
+The template is designed to build a Spring-Boot project, optionally containing a ReactJs app.
 This includes testing with coverage, building reactJs app, running Sonarqube analysis, and creating a Docker image.
 
 The project only needs to define what is specific (dependencies and Java version),
