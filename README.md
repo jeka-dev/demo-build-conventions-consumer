@@ -4,67 +4,72 @@ The web application manages a list of coffee shops.
 
 ![img.png](screenshot.png)
 
-It is fully built with JeKa by using a [template](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/SpringBootTemplateBuild.java)
-containing the build logic.
-This allows to describe the whole build only by specifying the following properties mentioned below.
+The project is fully built using JeKa with a [template](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/SpringBootTemplateBuild.java) containing the build logic.
 
-The template is designed to build a Spring-Boot project, optionally containing a ReactJs app.
-This includes testing with coverage, building reactJs app, running Sonarqube analysis, and creating a Docker image.
+This template is designed for building Spring Boot projects, with optional ReactJS apps. It handles tasks like testing with coverage, building the ReactJS app, running SonarQube analysis, and creating a Docker image.
 
-The project only needs to define what is specific (dependencies and Java version),
-The `appId` and `nodeJsVersion` can be optionally set to override defaults.
+End-to-end tests are located in the `e2e` package under the `src/test/java` directory. The `e2e` method manages the deployment and undeployment of the application using containers.
 
 <small>*jeka.properties*</small>
-``` 
-jeka.version=0.11.0-beta.0
+```properties
+jeka.version=0.11.20
 jeka.java.version=21
 
-jeka.inject.classpath=dev.jeka:template-examples:0.11.0-alpha.7.1
-jeka.default.kbean=dev.jeka.demo.templates.SpringBootTemplateBuild
+jeka.kbean.default=project
 
-@springBootTemplateBuild.appId=demo-templates-coffeeshop
-@springBootTemplateBuild.nodeJsVersion=20.14.0
+# Use build template defined at https://github.com/jeka-dev/demo-build-templates
+jeka.classpath=dev.jeka:template-examples:0.11.20-1
+@template=
 ```
 
-<br/><br/>
-Let's see how to use it. The exposed methods are coming from `SpringBootTemplateBuild` class.
+## How to Use
 
-## Setup IDE
+### Setup IDE
  
 ```shell
-jeka intellij: iml
+jeka intellij: sync
 ```
 
-## Build
+### Build
 
-Help on template KBean :
+Help on template KBean:
 ```shell
-jeka --doc
+jeka template: --doc
 ```
 
-To create a bootable jar, containing the client app, and execute SonarQube analysis on both java and js, execute :
+Create a bootable jar, containing the client app,:
 ```shell
 jeka pack
 ```
 
-Same but passing by sonarqube quality checks, execute :
+Deploy the application in Docker then run end-to-end tests:
 ```shell
-jeka packQuality
+jeka template: e2e
 ```
 
-To run the bootable jar built in previous step, execute :
+Run Sonarqube analysis, on both Java and JS:
+```shell
+jeka template: sonar
+```
+
+Run the bootable jar:
 ```shell
 jeka runJar
 ```
 
-To create a Docker image
+Create a Docker image:
 ```shell
-jeka buildImage
+jeka docker: build
+```
+
+Create a Spring-Boot native Docker image:
+```shell
+jeka docker: buildNative
 ```
 
 Once the image is built built, we can run end-to-end tests on the Docker image
 ```shell
-jeka runE2e
+jeka template: e2e
 ```
 
-For CI/CD, we can run `jeka pack buildImage runE2e` for instance.
+For CI/CD, we can run `jeka pack template: e2e sonar` for instance.
