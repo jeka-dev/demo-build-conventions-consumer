@@ -4,7 +4,7 @@ The web application manages a list of coffee shops.
 
 ![img.png](screenshot.png)
 
-The project is fully built using JeKa with a [template](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/SpringBootTemplateBuild.java) containing the build logic.
+The project is fully built using JeKa with a [template](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/springboot/reactjs/Template.java) containing the build logic.
 
 This template is designed for building Spring Boot projects, with optional ReactJS apps. It handles tasks like testing with coverage, building the ReactJS app, running SonarQube analysis, and creating a Docker image.
 
@@ -12,7 +12,7 @@ End-to-end tests are located in the `e2e` package under the `src/test/java` dire
 
 <small>*jeka.properties*</small>
 ```properties
-jeka.version=0.11.20
+jeka.version=0.11.21
 jeka.java.version=21
 
 jeka.kbean.default=project
@@ -44,12 +44,12 @@ jeka pack
 
 Deploy the application in Docker then run end-to-end tests:
 ```shell
-jeka template: e2e
+jeka e2eTest
 ```
 
 Run Sonarqube analysis, on both Java and JS:
 ```shell
-jeka template: sonar
+jeka checkQuality
 ```
 
 Run the bootable jar:
@@ -67,9 +67,4 @@ Create a Spring-Boot native Docker image:
 jeka docker: buildNative
 ```
 
-Once the image is built built, we can run end-to-end tests on the Docker image
-```shell
-jeka template: e2e
-```
-
-For CI/CD, we can run `jeka pack template: e2e sonar` for instance.
+For CI/CD, we can run `jeka pack e2eTest checkQuality` for instance.
