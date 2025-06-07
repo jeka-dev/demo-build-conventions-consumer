@@ -1,25 +1,31 @@
-# Springboot-ReactJs Application built using an External Template
+# Spring Boot + ReactJS Application Built Using Build-Convention
 
-The web application manages a list of coffee shops.
+This web application manages a list of coffee shops.
 
-![img.png](screenshot.png)
+![Screenshot](screenshot.png)
 
-The project is fully built using JeKa with a [template](https://github.com/jeka-dev/demo-build-templates/blob/master/jeka-src/dev/jeka/demo/templates/springboot/reactjs/Template.java) containing the build logic.
+The project is fully built using **JeKa**, leveraging a [convention](https://github.com/jeka-dev/demo-build-conventions/blob/master/jeka-src/dev/jeka/demo/conventions/springboot/reactjs/Convention.java) that defines the build logic.
 
-This template is designed for building Spring Boot projects, with optional ReactJS apps. It handles tasks like testing with coverage, building the ReactJS app, running SonarQube analysis, and creating a Docker image.
+This build-convention is designed for building **Spring Boot** projects with an optional **ReactJS** frontend. It automates tasks such as:
 
-End-to-end tests are located in the `e2e` package under the `src/test/java` directory. The `e2e` method manages the deployment and undeployment of the application using containers.
+- Running Java tests with code coverage,
+- Building and testing the ReactJS app,
+- Performing **SonarQube** analysis (Java and JS),
+- Creating Docker and native images.
 
-<small>*jeka.properties*</small>
+End-to-end tests are located in the `e2e` package under the `src/test/java` directory. 
+The end-2-end test handles deployment and un-deployment of the application using containers.
+
+<small><i>Configured via <code>jeka.properties</code></i></small>
 ```properties
-jeka.version=0.11.21
+jeka.version=0.11.39
 jeka.java.version=21
 
 jeka.kbean.default=project
 
-# Use build template defined at https://github.com/jeka-dev/demo-build-templates
-jeka.classpath=dev.jeka:template-examples:0.11.20-1
-@template=
+# Use the build convention defined at https://github.com/jeka-dev/demo-build-templates
+jeka.classpath=dev.jeka:convention-examples:0.11.39-2
+@convention=on
 ```
 
 ## How to Use
@@ -34,22 +40,17 @@ jeka intellij: sync
 
 Help on template KBean:
 ```shell
-jeka template: --doc
+jeka convention: --doc
 ```
 
-Create a bootable jar, containing the client app,:
+Run a full build, including sonarqube and end-2-end tests
 ```shell
-jeka pack
+jeka build
 ```
 
-Deploy the application in Docker then run end-to-end tests:
+Run a full build, excluding sonar analysis
 ```shell
-jeka e2eTest
-```
-
-Run Sonarqube analysis, on both Java and JS:
-```shell
-jeka checkQuality
+jeka test pack e2eTest
 ```
 
 Run the bootable jar:
@@ -67,4 +68,3 @@ Create a Spring-Boot native Docker image:
 jeka docker: buildNative
 ```
 
-For CI/CD, we can run `jeka pack e2eTest checkQuality` for instance.
