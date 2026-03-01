@@ -38,7 +38,7 @@ jeka intellij: sync
 
 ### Build
 
-Help on template KBean:
+Help on convention KBean:
 ```shell
 jeka convention: --doc
 ```
