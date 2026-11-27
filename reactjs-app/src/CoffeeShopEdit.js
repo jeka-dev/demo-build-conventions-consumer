@@ -18,14 +18,13 @@ class CoffeeShopEdit extends Component {
     this.state = {
       item: this.emptyItem,
       errorMessage: null,
-      isCreate: false
+      isCreate: props.match.params.id === 'new' // are we editing or creating?
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
-    this.state.isCreate = this.props.match.params.id === 'new'; // are we editing or creating?
     if (!this.state.isCreate) {
       const response = await this.props.api.getById(this.props.match.params.id);
       const coffeeShop = await response.json();
