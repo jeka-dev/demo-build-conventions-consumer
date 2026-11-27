@@ -18,15 +18,23 @@ The end-2-end test handles deployment and un-deployment of the application using
 
 <small><i>Configured via <code>jeka.properties</code></i></small>
 ```properties
-jeka.version=0.11.39
-jeka.java.version=21
-
+jeka.version=0.11.69
+jeka.java.version=25
 jeka.kbean.default=project
 
-# Use the build convention defined at https://github.com/jeka-dev/demo-build-templates
+# Use a build convention defined at https://github.com/jeka-dev/demo-build-conventions
 jeka.classpath=dev.jeka:convention-examples:0.11.39-2
 @convention=on
 ```
+
+The dependencies are declared in [jeka.project.deps](jeka.project.deps).
+
+## Prerequisites
+
+- [JeKa installed](https://jeka-dev.github.io/jeka/installation/). JeKa downloads the JDK and Node.js it needs.
+- Google Chrome, for the end-to-end tests.
+- Docker, for the Docker images.
+- A SonarQube server, only for `jeka build`.
 
 ## How to Use
 
@@ -43,17 +51,17 @@ Help on convention KBean:
 jeka convention: --doc
 ```
 
-Run a full build, including sonarqube and end-2-end tests
+Run a full build, including SonarQube analysis and end-to-end tests (needs a SonarQube server)
 ```shell
 jeka build
 ```
 
-Run a full build, excluding sonar analysis
+Run a full build, excluding the SonarQube analysis
 ```shell
 jeka test pack e2eTest
 ```
 
-Run the bootable jar:
+Run the bootable jar, then open http://localhost:8080:
 ```shell
 jeka runJar
 ```
@@ -68,3 +76,8 @@ Create a Spring-Boot native Docker image:
 jeka docker: buildNative
 ```
 
+## Links
+
+- [Reuse build conventions: the convention repository](https://github.com/jeka-dev/demo-build-conventions)
+- [KBeans](https://jeka-dev.github.io/jeka/reference/kbeans/)
+- [Spring Boot plugin](https://github.com/jeka-dev/jeka/tree/master/plugins/plugins.springboot)
