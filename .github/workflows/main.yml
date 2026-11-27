@@ -1,6 +1,3 @@
-# This workflow will build a Java project with Ant
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-ant
-
 name: Java CI
 
 on:
@@ -15,5 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build with JeKa
-      run: jeka pack buildImage runE2e
+    - name: Install JeKa
+      run: |
+        curl -sL https://jeka.dev/install.sh | bash -s - install
+        echo "$HOME/.jeka/bin" >> "$GITHUB_PATH"
+    - name: Build with JeKa, excluding the SonarQube analysis
+      # Selenide runs the end-to-end test in Chrome: xvfb-run gives it a display
+      run: xvfb-run jeka test pack e2eTest
