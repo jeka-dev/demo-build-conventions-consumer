@@ -16,10 +16,8 @@ This build-convention is designed for building **Spring Boot** projects with an 
 End-to-end tests are located in the `e2e` package under the `src/test/java` directory. 
 The end-2-end test handles deployment and un-deployment of the application using containers.
 
-<small><i>Configured via <code>jeka.properties</code></i></small>
+Besides the JeKa and Java versions, [jeka.properties](jeka.properties) only needs these lines:
 ```properties
-jeka.version=0.11.69
-jeka.java.version=25
 jeka.kbean.default=project
 
 # Use a build convention defined at https://github.com/jeka-dev/demo-build-conventions
